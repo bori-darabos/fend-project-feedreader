@@ -32,11 +32,11 @@ $(function() {
          * and that the URL is not empty.
          */
          it('URLs are not empty', function() {
-            allFeeds.forEach(feed) => {
+            allFeeds.forEach((feed) => {
                 expect(feed.url).toBeDefined();
                 expect(feed.url.length).not.toBe(0);
-                expect(feed.url).toMatch(/^http|https):\/\//);
-            };
+                expect(feed.url).toMatch((/^http|https):\/\//);
+            });
          });
 
 
@@ -45,10 +45,10 @@ $(function() {
          * and that the name is not empty.
          */
         it('has name property and not empty', function() {
-            allFeeds.forEach(feed) => {
+            allFeeds.forEach((feed) => {
                 expect(feed.name).toBeDefined();
                 expect(feed.name.length).not.toBe(0);
-            };
+            });
         });
     });
 
@@ -60,11 +60,11 @@ $(function() {
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
-         let body = document.getElementsByTagName('body')[0];
-         let menuIcon = document.querySelector(".menu-icon-link");
+         let body = $('body');
+         let menuIcon = $('.menu-icon-link');
          
          it('menu is hidden by default', function () {
-            expect(body.className).toContain('menu-hidden')
+            expect($('body').hasClass('menu-hidden')).toBe(true);
          });
 
          /* TODO: Write a test that ensures the menu changes
@@ -74,9 +74,9 @@ $(function() {
           */
           it('menu displays when clicked and hides when clicked again', function() {
             menuIcon.click();
-            expect(body.className).not.toContain('menu-hidden');
+            expect($('body').hasClass('menu-hidden')).toBe(false);;
             menuIcon.click();
-            expect(body.className).toContain('menu-hidden')
+            expect($('body').hasClass('menu-hidden')).toBe(true);
           });
     });
     /* TODO: Write a new test suite named "Initial Entries" */
@@ -96,7 +96,7 @@ $(function() {
    
 
          it('there is at least a single .entry element within the .feed container', function(done) {
-            expect(document.querySelector('.feed').children.length).toBeGreaterThan(0);
+            expect($('feed').children.length).toBeGreaterThan(0);
             done();
         });
     });
@@ -113,10 +113,10 @@ $(function() {
         let newFeed;
         beforeEach(function(done) {
             loadFeed(0, function() {
-                oldFeed = document.getElementsByClassName('feed')[0].innerHTML;
+                oldFeed = $('feed')[0].innerHTML;
                 loadFeed(1, function() { 
 
-                    newFeed = document.getElementsByClassName('feed')[0].innerHTML;
+                    newFeed = $('feed')[0].innerHTML;
                     done();
                 });
             });
