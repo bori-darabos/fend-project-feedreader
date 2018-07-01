@@ -26,5 +26,5 @@ No test should be dependent on the results of another.
 Callbacks should be used to ensure that feeds are loaded before they are tested.  
 Implement error handling for undefined variables and out-of-bound array access.
 
-## How  is theproject completed?  
+## How is theproject completed?  
 When complete - all of your tests should pass.
